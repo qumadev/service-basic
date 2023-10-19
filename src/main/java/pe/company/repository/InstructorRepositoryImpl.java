@@ -34,7 +34,9 @@ public class InstructorRepositoryImpl implements InstructorRepository {
 	
 	@Override
 	public Instructor findById(int instructorId) {
-		Optional<Instructor> instructor = itemsInstructor.stream().filter(p -> p.getInstructorID() == instructorId).findFirst();
+		Optional<Instructor> instructor = itemsInstructor.stream()
+				.filter(p -> p.getInstructorID() == instructorId)
+				.findFirst();
 		
 		return instructor.orElse(null);
 	}
