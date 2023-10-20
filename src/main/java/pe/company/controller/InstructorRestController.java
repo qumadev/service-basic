@@ -33,10 +33,10 @@ public class InstructorRestController {
 	
 	@GetMapping("/buscar/{instructorId}")
 	public ResponseEntity<?> buscar(@PathVariable int instructorId){
-		Instructor instructor = instructorService.findById(instructorId);
+		Instructor instructorDB = instructorService.findById(instructorId);
 		
-		if(instructor!=null) {
-			return new ResponseEntity<>(instructor, HttpStatus.OK);
+		if(instructorDB!=null) {
+			return new ResponseEntity<>(instructorDB, HttpStatus.OK);
 		}
 		
 		return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
@@ -53,15 +53,15 @@ public class InstructorRestController {
 	public ResponseEntity<?> editar(@PathVariable int instructorId,
 			@RequestBody Instructor newInstructor){
 		
-		Instructor instructor = instructorService.findById(instructorId);
+		Instructor instructorDB = instructorService.findById(instructorId);
 
-		if(instructor!=null) {
-			instructor.setNombre(newInstructor.getNombre());
-			instructor.setApellidos(newInstructor.getApellidos());
-			instructor.setPassword(newInstructor.getPassword());
-			instructor.setEmail(newInstructor.getEmail());
-			instructor.setFregistro(newInstructor.getFregistro());
-			instructorService.update(instructor);
+		if(instructorDB!=null) {
+			instructorDB.setNombre(newInstructor.getNombre());
+			instructorDB.setApellidos(newInstructor.getApellidos());
+			instructorDB.setPassword(newInstructor.getPassword());
+			instructorDB.setEmail(newInstructor.getEmail());
+			instructorDB.setFregistro(newInstructor.getFregistro());
+			instructorService.update(instructorDB);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
 		
@@ -70,13 +70,12 @@ public class InstructorRestController {
 	
 	@DeleteMapping("/borrar/{instructorId}")
 	public ResponseEntity<?> borrar(@PathVariable int instructorId){
-		Instructor instructor = instructorService.findById(instructorId);
-		if(instructor!=null) {
+		Instructor instructorDB = instructorService.findById(instructorId);
+		if(instructorDB!=null) {
 			instructorService.delete(instructorId);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
 		return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 	}
-	
 
 }

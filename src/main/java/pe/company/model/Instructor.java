@@ -1,19 +1,33 @@
 package pe.company.model;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.*;
 
 
+@Entity
+@Table(name="instructores")
 public class Instructor implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int instructorID;
+	@Column
 	private String nombre;
+	@Column
 	private String apellidos;
+	@Column
 	private String password;
+	@Column(unique = true,nullable = false)
 	private String email;
+	@Temporal(TemporalType.DATE)
 	private Date fregistro;
 	
+	public Instructor() {
+		super();
+	}
+
 	public Instructor(Instructor instructor) {
 		this(instructor.getInstructorID(),instructor.getNombre(),instructor.getApellidos()
 				,instructor.getPassword(),instructor.getEmail(),instructor.getFregistro());
@@ -30,7 +44,10 @@ public class Instructor implements Serializable{
 		this.fregistro = fregistro;
 	}
 
-
+	@PrePersist
+	public void prePersist() {
+		this.fregistro=new Date();
+	}
 
 	public int getInstructorID() {
 		return instructorID;

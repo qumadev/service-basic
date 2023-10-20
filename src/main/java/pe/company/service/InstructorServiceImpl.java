@@ -1,8 +1,10 @@
 package pe.company.service;
 
 import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import pe.company.model.Instructor;
 import pe.company.repository.InstructorRepository;
@@ -15,28 +17,33 @@ public class InstructorServiceImpl implements InstructorService{
 	
 
 	@Override
+	@Transactional
 	public void insert(Instructor instructor) {
-		instructorRepository.insert(instructor);
+		instructorRepository.save(instructor);
 	}
 	
 	@Override
+	@Transactional
 	public void update(Instructor instructor) {
-		instructorRepository.update(instructor);
+		instructorRepository.save(instructor);
 	}
 	
 	@Override
+	@Transactional
 	public void delete(int instructorId) {
-		instructorRepository.delete(instructorId);
+		instructorRepository.deleteById(instructorId);
 	}
 	
 	@Override
+	@Transactional(readOnly = true)
 	public Instructor findById(int instructorId) {
-		return instructorRepository.findById(instructorId);
+		return instructorRepository.findById(instructorId).orElse(null);
 	}
 	
 	@Override
+	@Transactional(readOnly = true)
 	public Collection<Instructor> findAll(){
-		return instructorRepository.findAll();
+		return (Collection<Instructor>)instructorRepository.findAll();
 	}
 
 }
