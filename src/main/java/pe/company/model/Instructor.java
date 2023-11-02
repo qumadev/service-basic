@@ -1,6 +1,6 @@
 package pe.company.model;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.*;
 import javax.persistence.*;
 
 
@@ -23,6 +23,20 @@ public class Instructor implements Serializable{
 	private String email;
 	@Temporal(TemporalType.DATE)
 	private Date fregistro;
+
+	@OneToOne(mappedBy = "instructor")
+	private Conyuge conyuge;
+
+	@OneToMany(mappedBy = "instructor")
+	private Collection<Taller> itemsTaller = new ArrayList<>();
+
+	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE})
+	@JoinTable(name = "instructores_tecnologias",
+	joinColumns = @JoinColumn(name = "instructor_id",nullable = false,
+	foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key(instructor_id) references instructores(instructor_id)")),
+	inverseJoinColumns = @JoinColumn(name = "tecnologia_id",nullable = false,
+	foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key(tecnologia_id) references tecnologias(tecnologia_id)")))
+	private Set<Tecnologia> itemsTecnologia = new HashSet<>();
 	
 	public Instructor() {
 		super();
