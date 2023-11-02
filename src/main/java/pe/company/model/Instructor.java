@@ -1,74 +1,82 @@
 package pe.company.model;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
-import javax.persistence.*;
-
 
 @Entity
 @Table(name="instructores")
-public class Instructor implements Serializable{
+public class Instructor implements Serializable
+{
+	private static final long serialVersionUID=1L;
 	
-	private static final long serialVersionUID = 1L;
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int instructorID;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer instructorId;
+	
 	@Column
 	private String nombre;
+	
 	@Column
 	private String apellidos;
+	
 	@Column
 	private String password;
-	@Column(unique = true,nullable = false)
+	
+	@Column(unique=true,nullable=false)
 	private String email;
+	
 	@Temporal(TemporalType.DATE)
 	private Date fregistro;
-
-	@OneToOne(mappedBy = "instructor")
+	
+	@OneToOne(mappedBy="instructor")
 	private Conyuge conyuge;
-
-	@OneToMany(mappedBy = "instructor")
-	private Collection<Taller> itemsTaller = new ArrayList<>();
-
-	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE})
-	@JoinTable(name = "instructores_tecnologias",
-	joinColumns = @JoinColumn(name = "instructor_id",nullable = false,
-	foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key(instructor_id) references instructores(instructor_id)")),
-	inverseJoinColumns = @JoinColumn(name = "tecnologia_id",nullable = false,
-	foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key(tecnologia_id) references tecnologias(tecnologia_id)")))
-	private Set<Tecnologia> itemsTecnologia = new HashSet<>();
+	
+	@OneToMany(mappedBy="instructor")
+	private Collection<Taller> itemsTaller=new ArrayList<>();
+	
+	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinTable(name="instructores_tecnologias",
+	 joinColumns=@JoinColumn(name="instructor_id",nullable=false,
+	foreignKey=@ForeignKey(foreignKeyDefinition="foreign key(instructor_id) references instructores(instructor_id)")),
+	  inverseJoinColumns = @JoinColumn(name="tecnologia_id", nullable=false,
+	  foreignKey=@ForeignKey(foreignKeyDefinition="foreign key(tecnologia_id) references tecnologias(tecnologia_id)")))
+	
+	private Set<Tecnologia> itemsTecnologia=new HashSet<>();
+	      
+	
 	
 	public Instructor() {
-		super();
-	}
-
-	public Instructor(Instructor instructor) {
-		this(instructor.getInstructorID(),instructor.getNombre(),instructor.getApellidos()
-				,instructor.getPassword(),instructor.getEmail(),instructor.getFregistro());
+		
 	}
 	
-	public Instructor(int instructorID, String nombre, String apellidos, String password, String email,
-			Date fregistro) {
-		super();
-		this.instructorID = instructorID;
+	public Instructor(Instructor instructor) {
+		this(instructor.getInstructorId(), instructor.getNombre(), instructor.getApellidos(), 
+				instructor.getPassword(), instructor.getEmail(), instructor.getFregistro());
+	}
+	
+	public Instructor(Integer instructorId, String nombre, String apellidos, String password,
+			String email, Date fregistro)
+	{
+		this.instructorId = instructorId;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.password = password;
 		this.email = email;
 		this.fregistro = fregistro;
 	}
-
+	
 	@PrePersist
 	public void prePersist() {
-		this.fregistro=new Date();
+		fregistro=new Date();
 	}
 
-	public int getInstructorID() {
-		return instructorID;
+	public Integer getInstructorId() {
+		return instructorId;
 	}
 
-	public void setInstructorID(int instructorID) {
-		this.instructorID = instructorID;
+	public void setInstructorId(Integer instructorId) {
+		this.instructorId = instructorId;
 	}
 
 	public String getNombre() {
@@ -115,5 +123,5 @@ public class Instructor implements Serializable{
 		return serialVersionUID;
 	}
 	
-
+	
 }

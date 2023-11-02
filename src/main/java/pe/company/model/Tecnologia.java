@@ -1,68 +1,80 @@
 package pe.company.model;
-import java.io.Serializable;
-import java.util.*;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="tecnologias")
 public class Tecnologia implements Serializable{
+	
+	private static final long serialVersionUID=1L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer tecnologiaId;
+	
+	@Column
+	private String nombre;
+	
+	@Temporal(TemporalType.DATE)
+	private Date fregistro;
+	
+	@ManyToMany(mappedBy="itemsTecnologia", cascade= {CascadeType.PERSIST, CascadeType.MERGE})
+	private Set<Instructor> itemsInstructor=new HashSet<>();
+	
+	public Tecnologia() {
+		
+	}
 
-    private static final long serialVersionUID = 1L;
+	public Tecnologia(Tecnologia tecnologia) {
+		this(tecnologia.getTecnologiaId(), tecnologia.getNombre(), tecnologia.getFregistro());
+	}
+	
+	public Tecnologia(Integer tecnologiaId, String nombre, Date fregistro)
+	{
+		this.tecnologiaId = tecnologiaId;
+		this.nombre = nombre;
+		this.fregistro = fregistro;
+	}
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int tecnologiaId;
+	public Integer getTecnologiaId() {
+		return tecnologiaId;
+	}
 
-    @Column
-    private String nombre;
+	public void setTecnologiaId(Integer tecnologiaId) {
+		this.tecnologiaId = tecnologiaId;
+	}
 
-    @Temporal(TemporalType.DATE)
-    private Date fregistro;
+	public String getNombre() {
+		return nombre;
+	}
 
-    @ManyToMany(mappedBy = "itemsTecnologia", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<Instructor> itemsInstructor=new HashSet<>();
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public Tecnologia(){}
+	public Date getFregistro() {
+		return fregistro;
+	}
 
-    public Tecnologia(Tecnologia tecnologia){
-        this(tecnologia.getTecnologiaId(),tecnologia.getNombre(),tecnologia.getFregistro());
-    }
+	public void setFregistro(Date fregistro) {
+		this.fregistro = fregistro;
+	}
 
-    public Tecnologia(int tecnologiaId, String nombre, Date fregistro) {
-        this.tecnologiaId = tecnologiaId;
-        this.nombre = nombre;
-        this.fregistro = fregistro;
-    }
+	public Set<Instructor> getItemsInstructor() {
+		return itemsInstructor;
+	}
 
-    public int getTecnologiaId() {
-        return tecnologiaId;
-    }
+	public void setItemsInstructor(Set<Instructor> itemsInstructor) {
+		this.itemsInstructor = itemsInstructor;
+	}
 
-    public void setTecnologiaId(int tecnologiaId) {
-        this.tecnologiaId = tecnologiaId;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Date getFregistro() {
-        return fregistro;
-    }
-
-    public void setFregistro(Date fregistro) {
-        this.fregistro = fregistro;
-    }
-
-    public Set<Instructor> getItemsInstructor() {
-        return itemsInstructor;
-    }
-
-    public void setItemsInstructor(Set<Instructor> itemsInstructor) {
-        this.itemsInstructor = itemsInstructor;
-    }
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
 }
