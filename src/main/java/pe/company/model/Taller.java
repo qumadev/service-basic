@@ -23,7 +23,6 @@ public class Taller implements Serializable{
 	@JoinColumn(name="instructor_id", nullable=false,  
   	foreignKey=@ForeignKey(foreignKeyDefinition =
 	"foreign key(instructor_id) references instructores(instructor_id)"))
-	
 	private Instructor instructor;
 	
 	public Taller(Taller taller) {

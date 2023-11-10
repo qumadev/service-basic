@@ -37,11 +37,10 @@ public class Instructor implements Serializable
 	
 	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name="instructores_tecnologias",
-	 joinColumns=@JoinColumn(name="instructor_id",nullable=false,
+	joinColumns=@JoinColumn(name="instructor_id",nullable=false,
 	foreignKey=@ForeignKey(foreignKeyDefinition="foreign key(instructor_id) references instructores(instructor_id)")),
-	  inverseJoinColumns = @JoinColumn(name="tecnologia_id", nullable=false,
-	  foreignKey=@ForeignKey(foreignKeyDefinition="foreign key(tecnologia_id) references tecnologias(tecnologia_id)")))
-	
+	inverseJoinColumns = @JoinColumn(name="tecnologia_id", nullable=false,
+	foreignKey=@ForeignKey(foreignKeyDefinition="foreign key(tecnologia_id) references tecnologias(tecnologia_id)")))
 	private Set<Tecnologia> itemsTecnologia=new HashSet<>();
 	      
 	
