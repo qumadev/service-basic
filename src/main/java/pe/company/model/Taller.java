@@ -24,7 +24,9 @@ public class Taller implements Serializable{
   	foreignKey=@ForeignKey(foreignKeyDefinition =
 	"foreign key(instructor_id) references instructores(instructor_id)"))
 	private Instructor instructor;
-	
+
+	public Taller(){}
+
 	public Taller(Taller taller) {
 		this(taller.getTallerId(), taller.getNombre(), taller.getCosto());
 	}

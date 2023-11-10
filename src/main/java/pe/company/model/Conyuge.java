@@ -19,8 +19,9 @@ private static final long serialVersionUID=1L;
 	@JoinColumn(name="instructor_id", nullable=false, unique=true, 
   	foreignKey=@ForeignKey(foreignKeyDefinition =
 	"foreign key(instructor_id) references instructores(instructor_id)"))
-	
 	private Instructor instructor;
+
+	public Conyuge(){}
 	
 	public Conyuge(Conyuge conyuge) {
 		this(conyuge.getConyugeDni(), conyuge.getNombre());

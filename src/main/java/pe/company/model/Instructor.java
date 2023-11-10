@@ -42,9 +42,7 @@ public class Instructor implements Serializable
 	inverseJoinColumns = @JoinColumn(name="tecnologia_id", nullable=false,
 	foreignKey=@ForeignKey(foreignKeyDefinition="foreign key(tecnologia_id) references tecnologias(tecnologia_id)")))
 	private Set<Tecnologia> itemsTecnologia=new HashSet<>();
-	      
-	
-	
+
 	public Instructor() {
 		
 	}

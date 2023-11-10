@@ -25,9 +25,7 @@ public class Tecnologia implements Serializable{
 	@ManyToMany(mappedBy="itemsTecnologia", cascade= {CascadeType.PERSIST, CascadeType.MERGE})
 	private Set<Instructor> itemsInstructor=new HashSet<>();
 	
-	public Tecnologia() {
-		
-	}
+	public Tecnologia() {}
 
 	public Tecnologia(Tecnologia tecnologia) {
 		this(tecnologia.getTecnologiaId(), tecnologia.getNombre(), tecnologia.getFregistro());
@@ -38,6 +36,11 @@ public class Tecnologia implements Serializable{
 		this.tecnologiaId = tecnologiaId;
 		this.nombre = nombre;
 		this.fregistro = fregistro;
+	}
+
+	@PrePersist
+	public void prePersist() {
+		fregistro=new Date();
 	}
 
 	public Integer getTecnologiaId() {
