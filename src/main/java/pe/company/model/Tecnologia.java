@@ -23,7 +23,7 @@ public class Tecnologia implements Serializable{
 	private Date fregistro;
 	
 	@ManyToMany(mappedBy="itemsTecnologia", cascade= {CascadeType.PERSIST, CascadeType.MERGE})
-	private Set<Instructor> itemsInstructor=new HashSet<>();
+	private Set<Instructor> itemsInstructor = new HashSet<>();
 	
 	public Tecnologia() {}
 

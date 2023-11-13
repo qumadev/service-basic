@@ -31,21 +31,19 @@ public class Instructor implements Serializable
 	
 	@OneToOne(mappedBy="instructor")
 	private Conyuge conyuge;
-	
+
 	@OneToMany(mappedBy="instructor")
-	private Collection<Taller> itemsTaller=new ArrayList<>();
-	
+	private Collection<Taller> itemsTaller = new ArrayList<>();
+
 	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name="instructores_tecnologias",
 	joinColumns=@JoinColumn(name="instructor_id",nullable=false,
 	foreignKey=@ForeignKey(foreignKeyDefinition="foreign key(instructor_id) references instructores(instructor_id)")),
 	inverseJoinColumns = @JoinColumn(name="tecnologia_id", nullable=false,
 	foreignKey=@ForeignKey(foreignKeyDefinition="foreign key(tecnologia_id) references tecnologias(tecnologia_id)")))
-	private Set<Tecnologia> itemsTecnologia=new HashSet<>();
+	private Set<Tecnologia> itemsTecnologia = new HashSet<>();
 
-	public Instructor() {
-		
-	}
+	public Instructor() {}
 	
 	public Instructor(Instructor instructor) {
 		this(instructor.getInstructorId(), instructor.getNombre(), instructor.getApellidos(), 
@@ -114,6 +112,30 @@ public class Instructor implements Serializable
 
 	public void setFregistro(Date fregistro) {
 		this.fregistro = fregistro;
+	}
+
+//	public Conyuge getConyuge() {
+//		return conyuge;
+//	}
+//
+//	public void setConyuge(Conyuge conyuge) {
+//		this.conyuge = conyuge;
+//	}
+
+	public Set<Tecnologia> getItemsTecnologia() {
+		return itemsTecnologia;
+	}
+
+	public void setItemsTecnologia(Set<Tecnologia> itemsTecnologia) {
+		this.itemsTecnologia = itemsTecnologia;
+	}
+
+	public Collection<Taller> getItemsTaller() {
+		return itemsTaller;
+	}
+
+	public void setItemsTaller(Collection<Taller> itemsTaller) {
+		this.itemsTaller = itemsTaller;
 	}
 
 	public static long getSerialversionuid() {

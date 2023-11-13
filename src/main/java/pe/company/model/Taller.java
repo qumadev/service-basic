@@ -62,13 +62,13 @@ public class Taller implements Serializable{
 		this.costo = costo;
 	}
 
-	public Instructor getInstructor() {
-		return instructor;
-	}
-
-	public void setInstructor(Instructor instructor) {
-		this.instructor = instructor;
-	}
+//	public Instructor getInstructor() {
+//		return instructor;
+//	}
+//
+//	public void setInstructor(Instructor instructor) {
+//		this.instructor = instructor;
+//	}
 
 	
 }
