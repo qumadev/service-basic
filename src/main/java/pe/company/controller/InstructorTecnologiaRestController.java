@@ -50,7 +50,7 @@ public class InstructorTecnologiaRestController {
 //            Tecnologia tecnologiaDb=tecnologiaService.findById(
 //                    instructor_tecnologia.getTecnologia().getTecnologiaId());
 
-            instructorDb.addTecnologia(tecnologiaDb);
+//            instructorDb.addTecnologia(tecnologiaDb);
 
             instructorService.insert(instructorDb);
             return new ResponseEntity<Void>(HttpStatus.CREATED);
