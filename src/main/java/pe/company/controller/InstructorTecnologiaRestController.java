@@ -42,10 +42,13 @@ public class InstructorTecnologiaRestController {
         Instructor instructorDb=instructorService.findById(
                 instructor_tecnologia.getInstructor().getInstructorId());
 
-        if(instructorDb!=null)
+        Tecnologia tecnologiaDb=tecnologiaService.findById(
+                instructor_tecnologia.getTecnologia().getTecnologiaId());
+
+        if(instructorDb!=null && tecnologiaDb!=null)
         {
-            Tecnologia tecnologiaDb=tecnologiaService.findById(
-                    instructor_tecnologia.getTecnologia().getTecnologiaId());
+//            Tecnologia tecnologiaDb=tecnologiaService.findById(
+//                    instructor_tecnologia.getTecnologia().getTecnologiaId());
 
             instructorDb.addTecnologia(tecnologiaDb);
 

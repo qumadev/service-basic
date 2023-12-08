@@ -121,9 +121,9 @@ public class Instructor implements Serializable
 //		this.conyuge = conyuge;
 //	}
 
-//	public Set<Tecnologia> getItemsTecnologia() {
-//		return itemsTecnologia;
-//	}
+	public Set<Tecnologia> getItemsTecnologia() {
+		return itemsTecnologia;
+	}
 
 	public void setItemsTecnologia(Set<Tecnologia> itemsTecnologia) {
 		this.itemsTecnologia = itemsTecnologia;
@@ -142,13 +142,13 @@ public class Instructor implements Serializable
 	}
 	
 	/*agregados para que funcione InstructorTecnologiaRestController */
-	public Collection<Tecnologia> getItemsTecnologia() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void addTecnologia(Tecnologia tecnologiaDb) {
-		// TODO Auto-generated method stub
-
-	}
+//	public Collection<Tecnologia> getItemsTecnologia() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	public void addTecnologia(Tecnologia tecnologiaDb) {
+//		// TODO Auto-generated method stub
+//
+//	}
 }
